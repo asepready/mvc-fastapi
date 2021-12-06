@@ -15,7 +15,7 @@ async def find_all_pegawai(limit: int = 10, offset: int = 0):
 
 @pegawai.get('/pegawai/{id}', description="Menampilkan detail data")
 async def find_pegawai(id: int, response: Response):
-    query = Pegawai.select().where(Pegawai.c.id_pegawai == id)
+    query = Pegawai.select().where(Pegawai.c.id == id)
     """
     Kenapa pakai huruf c pada Pegawai.c ?
     karena memakai ImmutableColumnCollection
@@ -50,7 +50,7 @@ async def insert_pegawai(pgw : PegawaiSchema, response: Response):
     )
     # print(query)
     conn.execute(query)
-    data = Pegawai.select().order_by(Pegawai.c.id_pegawai.desc())
+    data = Pegawai.select().order_by(Pegawai.c.id.desc())
     response = {"message": f"sukses menambahkan data baru", "data": conn.execute(data).fetchone() }
     return response
 
@@ -58,7 +58,7 @@ async def insert_pegawai(pgw : PegawaiSchema, response: Response):
               description="mengubah data pegawai")
 async def update_pegawai(id: int, pgw : PegawaiSchema, response: Response):
 
-    cek_email = Pegawai.select().filter(Pegawai.c.email_pegawai == pgw.email_pegawai, Pegawai.c.id_pegawai != id)
+    cek_email = Pegawai.select().filter(Pegawai.c.email_pegawai == pgw.email_pegawai, Pegawai.c.id != id)
     cek_email = conn.execute(cek_email).fetchone()
     if cek_email is not None:
         response.status_code = status.HTTP_400_BAD_REQUEST
@@ -70,10 +70,10 @@ async def update_pegawai(id: int, pgw : PegawaiSchema, response: Response):
         ttl_pegawai = pgw.ttl_pegawai,
         telp_pegawai = pgw.telp_pegawai,
         email_pegawai = pgw.email_pegawai
-    ).where(Pegawai.c.id_pegawai == id)
+    ).where(Pegawai.c.id == id)
     # print(query)
     conn.execute(query)
-    data = Pegawai.select().where(Pegawai.c.id_pegawai == id)
+    data = Pegawai.select().where(Pegawai.c.id == id)
     response = {"message": f"sukses mengubah data dengan id {id}", "data": conn.execute(data).fetchone() }
     return response
 
@@ -81,13 +81,13 @@ async def update_pegawai(id: int, pgw : PegawaiSchema, response: Response):
               description="menghapus data pegawai")
 async def hapus_pegawai(id: int, response: Response):
 
-    query = Pegawai.select().where(Pegawai.c.id_pegawai == id)
+    query = Pegawai.select().where(Pegawai.c.id == id)
     data = conn.execute(query).fetchone()
     if data is None:
         response.status_code = status.HTTP_404_NOT_FOUND
         return {"message": "data tidak ditemukan", "status": response.status_code}
 
-    query = Pegawai.delete().where(Pegawai.c.id_pegawai == id)
+    query = Pegawai.delete().where(Pegawai.c.id == id)
     conn.execute(query)
     response = {"message": f"sukses menghapus data dengan id {id}" }
     return response
