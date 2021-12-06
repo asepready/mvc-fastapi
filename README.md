@@ -18,7 +18,8 @@ pip install "fastapi[all]"
 ```
 
 ## Menginstall dependensi secara terpisah
-Lihat Referensi<a href=https://afrizalmy.com/tutorial-fastapi-crud-dengan-mysql>Click</a> disini
+Lihat Referensi klik di <a href=https://afrizalmy.com/tutorial-fastapi-crud-dengan-mysql> sini </a> 
+dan <a href="https://fastapi.tiangolo.com/"> ini </a>
 ```
 pip install fastapi
 pip install "uvicorn[standard]"
