@@ -1,0 +1,10 @@
+name: fastapi
+channels:
+  - conda-forge
+dependencies:
+  - python=3.8
+  - pip
+  - pip:
+    - "fastapi[all]" # Full Packages from FastApi Framework
+    - sqlalchemy #ORM (Object Relational Mapper) and create a database
+    - mysql-connector-python #Connection Python to Mysql
