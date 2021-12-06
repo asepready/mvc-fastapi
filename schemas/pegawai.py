@@ -11,7 +11,7 @@ class PegawaiSchema(BaseModel):
     email_pegawai: str = Field(..., min_length=3, max_length=50)
 
 class Pegawai(PegawaiSchema):
-    id_pegawai: int
+    id: int
 
 # list pegawai API
 class Pegawais(BaseModel):

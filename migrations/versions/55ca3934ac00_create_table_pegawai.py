@@ -16,11 +16,11 @@ branch_labels = None
 depends_on = None
 
 from faker import Faker
-faker = Faker('id_ID')
+faker = Faker('id')
 
 def upgrade():
-    pgw = op.create_table('dt_pegawai',
-        sa.Column('id_pegawai', sa.Integer, primary_key=True),
+    pgw = op.create_table('tb_pegawai',
+        sa.Column('id', sa.Integer, primary_key=True),
         sa.Column('nama_pegawai', sa.String(255), nullable=False),
         sa.Column('alamat_pegawai', sa.String(255)),
         sa.Column('ttl_pegawai', sa.Date()),
@@ -39,4 +39,4 @@ def upgrade():
     )
 
 def downgrade():
-    op.drop_table('dt_pegawai')
+    op.drop_table('tb_pegawai')
