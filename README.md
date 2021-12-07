@@ -23,7 +23,7 @@ dan <a href="https://fastapi.tiangolo.com/"> ini </a>
 ```
 pip install fastapi
 pip install "uvicorn[standard]"
-pip install alembic
 pip install SQLAlchemy
-pip install pymsql
+pip install alembic
+pip install PyMysql
 pip install Faker
