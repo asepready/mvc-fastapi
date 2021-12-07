@@ -19,4 +19,8 @@ app.include_router(pegawai)
 
 @app.get("/")
 async def root():
-    return {"message": "CRUD FastApi Mysql","Authors":"Afrizals Blog"}
+    return {
+        "message": "CRUD FastApi Mysql",
+        "Authors":"Afrizals Blog",
+        "Data": {"Pegawai":"http://localhost:8000/pegawai/all"}
+        }
